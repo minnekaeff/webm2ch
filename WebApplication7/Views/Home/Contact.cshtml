@@ -1,17 +1,62 @@
 ﻿@{
     ViewData["Title"] = "Contact";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+<div>
+    <video onloadstart="this.volume=0" src="https://2ch.hk/b/src/192896309/15524221181880.webm" width="100%" style="padding-bottom:100px;padding-top:100px;"></video>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+    <video onloadstart="this.volume=0" src="https://2ch.hk/tv/src/2199315/15386288286900.mp4" width="100%" style="padding-bottom:100px;padding-top:100px;"></video>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    <video onloadstart="this.volume=0" src="https://2ch.hk/tv/src/2199315/15386436833040.mp4" width="100%" style="padding-bottom:100px;padding-top:100px;"></video>
+
+    <video onloadstart="this.volume=0" src="https://2ch.hk/tv/src/2199315/15387262109840.mp4" width="100%" style="padding-bottom:100px;padding-top:100px;"></video>
+
+    <video onloadstart="this.volume=0" src="https://2ch.hk/tv/src/2199315/15387271981600.mp4" width="100%" style="padding-bottom:100px;padding-top:100px;"></video>
+
+    <video onloadstart="this.volume=0" src="https://2ch.hk/b/src/192896309/15524221181880.webm" width="100%" style="padding-bottom:100px;padding-top:100px;"></video>
+</div>
+
+<p>Use this area to provide additional information.</p>
+
+<script>
+        function Play() {
+            var vid = document.getElementById("1");
+            vid.play();
+        }
+        function Stop() {
+            var vid = document.getElementById("1");
+            vid.pause();
+        }
+
+        debugger;
+        var options = {
+            //root: document.querySelector('.container'),
+            rootMargin: '0px',
+            threshold: 1.0 // trigger only when element comes into view completely
+        };
+        var observer = new IntersectionObserver((entries, observer) => {
+            debugger;
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    playVideo(entry.target);
+                } else {
+                    pauseVideo(entry.target);
+                }
+            });
+        }, options);
+
+        //var target = document.querySelector('video');
+        //observer.observe(target);
+
+        // observe all paragraphs, when coming into view, change color
+        document.querySelectorAll('video').forEach((item) => {
+            observer.observe(item);
+        });
+
+        function playVideo(video) {
+            video.play();
+        }
+        function pauseVideo(video) {
+            video.pause();
+        }
+
+</script>
