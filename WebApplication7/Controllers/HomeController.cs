@@ -15,8 +15,8 @@ namespace WebApplication7.Controllers
     public class HomeController : Controller
     {
         private static readonly HttpClient client = new HttpClient();
-        string uri = "https://2ch.hk/tv/res/2199315.json";
-        string _boardUri = "https://2ch.hk/b/catalog.json";
+        //string uri = "https://2ch.hk/tv/res/2199315.json";
+        //string _boardUri = "https://2ch.hk/b/catalog.json";
         string siteUri = "https://2ch.hk";
 
         public IActionResult Index()
@@ -40,6 +40,7 @@ namespace WebApplication7.Controllers
                 root = await response.Content.ReadAsAsync<RootObject>();
             }
 
+            //поиск видео в потоке 
             foreach (var thread in root.threads)
             {
                 foreach (var post in thread.posts)
@@ -49,14 +50,14 @@ namespace WebApplication7.Controllers
                         if (file.type == 10 /*mp4*/ || file.type == 6 /*webm*/)
                         {
                             string videoUri = string.Concat(siteUri, file.path);
-
+                            //Добавить ссылку на видео в список
                             Videos.Add(videoUri);
                         }
                     }
                 }
             }
 
-            //ViewData["Message"] = "Your application description page.";
+            //стрингом отправить результат клиенту
             string dataStr = JsonConvert.SerializeObject(Videos, Formatting.None);
             ViewBag.Data = new HtmlString(dataStr);
             return View();
@@ -68,6 +69,7 @@ namespace WebApplication7.Controllers
         }
 
 
+        //выбор треда
         public async Task<IActionResult> Threads(string board, string type = "webm")
         {
             string uri = "https://2ch.hk/" + board + "/catalog.json";
@@ -77,9 +79,11 @@ namespace WebApplication7.Controllers
             {
                 root = await response.Content.ReadAsAsync<RootObject>();
             }
+            
 
             foreach (var thread in root.threads)
             {
+                //ищет все треды с заголовком или с комментом "webm"
                 if (thread.subject.ToLower().Contains(type) || 
                     thread.comment.ToLower().Contains(type))
                 {
