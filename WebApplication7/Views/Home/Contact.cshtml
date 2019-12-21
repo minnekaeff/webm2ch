@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Contact";
 }
-<div>
+@*<div>
     <video onloadstart="this.volume=0" src="https://2ch.hk/b/src/192896309/15524221181880.webm" width="100%" style="padding-bottom:100px;padding-top:100px;"></video>
 
     <video onloadstart="this.volume=0" src="https://2ch.hk/tv/src/2199315/15386288286900.mp4" width="100%" style="padding-bottom:100px;padding-top:100px;"></video>
@@ -59,4 +59,20 @@
             video.pause();
         }
 
+</script>*@
+
+<h3>Swipe the green rectangle to change its color:</h3>
+<div class="box"></div>
+ 
+<script>
+    $(function(){
+        // Bind the swipeHandler callback function to the swipe event on div.box
+        $( "div.box" ).on( "swipe", swipeHandler );
+ 
+        // Callback function references the event target and adds the 'swipe' class to it
+        function swipeHandler( event ){
+            $( event.target ).addClass( "swipe" );
+        }
+    });
 </script>
+ 
