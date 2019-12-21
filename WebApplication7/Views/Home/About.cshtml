@@ -14,15 +14,16 @@
         
         @*<a id="copy" class="btn-floating btn-lg btn-copy" type="button" role="button"><i class="fas fa-copy"></i></a>*@
     </div>
-    <div class="list-group-item"><video controls="controls" id="video" loop @*autoplay="autoplay"*@ src="" width="100%" style="padding: 0;"></video></div>
+    <div class="list-group-item"><video controls="controls" id="video" loop autoplay="autoplay" src="" width="100%" style="padding: 0;"></video></div>
     <div class="list-group-item"><input id="video-url" type="text" class="form-control" width="100%" /></div>
 </div>
 
     <script>
     $(document).ready(function () {
         var i = 0;
-
+        var height = document.documentElement.clientHeight - (document.documentElement.clientHeight/2.99);
         var videos = JSON.parse('@ViewBag.Data');
+        $("#video").css("max-height", height);
         $("#video")[0].src = videos[0];
         $("#video-url")[0].value = videos[0];
 
