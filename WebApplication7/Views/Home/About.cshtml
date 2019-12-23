@@ -23,7 +23,7 @@
         var i = 0;
         var height = document.documentElement.clientHeight - (document.documentElement.clientHeight/2.99);
         var videos = JSON.parse('@ViewBag.Data');
-        $("#video").css("max-height", height);
+        $("#video").css({ "max-height": height, "min-height": height });
         $("#video")[0].src = videos[0];
         $("#video-url")[0].value = videos[0];
 
