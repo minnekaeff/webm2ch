@@ -30,7 +30,7 @@
         $("#currentvideo")[0].innerText = 1;
         $("#videocount")[0].innerText = videos.length;
 
-        var video = document.getElementById('video');
+        var video = document.body;
 
         Hammer(video).on("swipeleft", function (event) {
             if (i + 1 == videos.length) {
