@@ -59,7 +59,7 @@ namespace WebApplication7.Controllers
 
             //стрингом отправить результат клиенту
             string dataStr = JsonConvert.SerializeObject(Videos, Formatting.None);
-            ViewBag.Data = new HtmlString(dataStr);
+            ViewBag.Data = Videos;
             return View();
         }
 
@@ -79,7 +79,6 @@ namespace WebApplication7.Controllers
             {
                 root = await response.Content.ReadAsAsync<RootObject>();
             }
-            
 
             foreach (var thread in root.threads)
             {
